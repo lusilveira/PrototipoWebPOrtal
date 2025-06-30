@@ -1,0 +1,3706 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal eSocial - Governo do Estado de São Paulo</title>
+    <style>
+/* Portal eSocial SP - Styles */
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CSS Variables */
+:root {
+    --vermelho-sp: #e20613;
+    --preto-sp: #000000;
+    --branco: #ffffff;
+    --cinza-claro: #f8f9fa;
+    --cinza-medio: #6c757d;
+    --cinza-escuro: #495057;
+    --verde-sucesso: #28a745;
+    --amarelo-atencao: #ffc107;
+    --vermelho-critico: #dc3545;
+    --azul-info: #17a2b8;
+    --shadow-light: 0 2px 8px rgba(0,0,0,0.1);
+    --shadow-medium: 0 4px 15px rgba(0,0,0,0.15);
+    --shadow-heavy: 0 8px 25px rgba(0,0,0,0.2);
+    --border-radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--preto-sp);
+    background: var(--branco);
+    overflow-x: hidden;
+}
+
+/* Header Styles */
+.header {
+    background: var(--branco);
+    box-shadow: var(--shadow-light);
+    border-bottom: 3px solid var(--vermelho-sp);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-secretaria {
+    height: 70px;
+    width: auto;
+    max-width: 300px;
+    object-fit: contain;
+}
+
+.logo-fallback {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-sp {
+    font-size: 2.2rem;
+    font-weight: 900;
+    display: flex;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+}
+
+.logo-s {
+    background: var(--vermelho-sp);
+    color: var(--branco);
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin-right: 3px;
+    transform: perspective(80px) rotateY(-8deg);
+}
+
+.logo-p {
+    background: var(--preto-sp);
+    color: var(--branco);
+    padding: 6px 10px;
+    border-radius: 6px;
+    transform: perspective(80px) rotateY(8deg);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--preto-sp);
+}
+
+.logo-subtitle {
+    font-size: 0.85rem;
+    color: var(--cinza-medio);
+}
+
+.portal-title {
+    text-align: right;
+}
+
+.portal-name {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--vermelho-sp);
+    text-shadow: 2px 2px 4px rgba(226,6,19,0.15);
+}
+
+.portal-desc {
+    font-size: 0.8rem;
+    color: var(--cinza-medio);
+    font-weight: 500;
+}
+
+/* Navigation Styles */
+.nav {
+    background: var(--cinza-claro);
+    border-bottom: 1px solid #dee2e6;
+    padding: 0.8rem 0;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.nav-item {
+    padding: 0.8rem 1.2rem;
+    background: var(--branco);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    color: var(--preto-sp);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(226,6,19,0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.nav-item:hover::before {
+    left: 100%;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: var(--vermelho-sp);
+    color: var(--branco);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(226, 6, 19, 0.3);
+    border-color: var(--vermelho-sp);
+}
+
+/* Main Content Styles */
+.main {
+    min-height: 80vh;
+    padding: 2rem 0;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.section {
+    display: none;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--preto-sp);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: var(--vermelho-sp);
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: var(--cinza-medio);
+    margin: 0 auto;
+}
+
+/* Dashboard Stats */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, var(--vermelho-sp), var(--preto-sp));
+    color: var(--branco);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--shadow-medium);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: var(--shadow-heavy);
+}
+
+.stat-card:hover::before {
+    opacity: 1;
+}
+
+.stat-number {
+    font-size: 2.8rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.stat-label {
+    font-size: 1rem;
+    font-weight: 600;
+    opacity: 0.95;
+}
+
+/* Cards */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background: var(--branco);
+    border-radius: var(--border-radius);
+    padding: 1.8rem;
+    box-shadow: var(--shadow-medium);
+    border-top: 4px solid var(--vermelho-sp);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--vermelho-sp), var(--preto-sp));
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-icon {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--vermelho-sp), var(--preto-sp));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--branco);
+    box-shadow: var(--shadow-light);
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--preto-sp);
+}
+
+/* Status Legend */
+.status-legend {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--azul-info);
+}
+
+.legend-title {
+    font-weight: 600;
+    color: var(--preto-sp);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.8rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.status-indicator.mini {
+    width: 8px;
+    height: 8px;
+}
+
+/* Status Items */
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    border-radius: 10px;
+    background: var(--cinza-claro);
+    transition: var(--transition);
+    border-left: 4px solid transparent;
+}
+
+.status-item:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+    border-left-color: var(--vermelho-sp);
+    box-shadow: var(--shadow-light);
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.8);
+    flex-shrink: 0;
+}
+
+.status-verde { background: var(--verde-sucesso); }
+.status-amarelo { background: var(--amarelo-atencao); }
+.status-vermelho { background: var(--vermelho-critico); }
+
+.status-indicator::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    top: -3px;
+    left: -3px;
+    opacity: 0.4;
+    animation: pulse 2s infinite;
+}
+
+.status-verde::after { background: var(--verde-sucesso); }
+.status-amarelo::after { background: var(--amarelo-atencao); }
+.status-vermelho::after { background: var(--vermelho-critico); }
+
+@keyframes pulse {
+    0% { transform: scale(0.8); opacity: 0.6; }
+    50% { transform: scale(1.2); opacity: 0.1; }
+    100% { transform: scale(0.8); opacity: 0.6; }
+}
+
+.status-info {
+    flex: 1;
+}
+
+.status-name {
+    font-weight: 700;
+    color: var(--preto-sp);
+    margin-bottom: 0.3rem;
+    font-size: 1rem;
+}
+
+.status-desc {
+    font-size: 0.85rem;
+    color: var(--cinza-medio);
+    line-height: 1.4;
+}
+
+/* Alerts */
+.alert {
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border-left: 4px solid;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 500;
+    box-shadow: var(--shadow-light);
+}
+
+.alert-info {
+    background: #d1ecf1;
+    border-color: var(--azul-info);
+    color: #0c5460;
+}
+
+.alert-danger {
+    background: #f8d7da;
+    border-color: var(--vermelho-critico);
+    color: #721c24;
+}
+
+.alert-warning {
+    background: #fff3cd;
+    border-color: var(--amarelo-atencao);
+    color: #856404;
+}
+
+.alert-success {
+    background: #d4edda;
+    border-color: var(--verde-sucesso);
+    color: #155724;
+}
+
+/* News */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.news-card {
+    background: var(--branco);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
+    transition: var(--transition);
+    border-left: 4px solid var(--vermelho-sp);
+    overflow: hidden;
+}
+
+.news-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.news-content {
+    padding: 1.8rem;
+}
+
+.news-date {
+    color: var(--vermelho-sp);
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+}
+
+.news-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--preto-sp);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.news-excerpt {
+    color: var(--cinza-medio);
+    line-height: 1.6;
+    font-size: 0.9rem;
+}
+
+/* Schedule */
+.schedule-box {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 2rem;
+    border-radius: 16px;
+    margin-bottom: 3rem;
+    border-left: 6px solid var(--vermelho-sp);
+}
+
+.primary-box {
+    border-left-color: var(--vermelho-sp);
+}
+
+.critical-box {
+    background: linear-gradient(135deg, #fff5f5, #ffe6e6);
+    border-left-color: var(--vermelho-critico);
+}
+
+.success-box {
+    background: linear-gradient(135deg, #e8f5e8, #d4edda);
+    border-left-color: var(--verde-sucesso);
+}
+
+.schedule-header {
+    color: var(--preto-sp);
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.critical-box .schedule-header {
+    color: var(--vermelho-critico);
+}
+
+.success-box .schedule-header {
+    color: var(--verde-sucesso);
+}
+
+.schedule-item {
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-light);
+}
+
+.schedule-item.critical {
+    background: #ffebee;
+    border-left: 6px solid var(--vermelho-critico);
+}
+
+.schedule-item.warning {
+    background: #fff3cd;
+    border-left: 6px solid var(--amarelo-atencao);
+}
+
+.schedule-item.info {
+    background: #d1ecf1;
+    border-left: 6px solid var(--azul-info);
+}
+
+.schedule-item.summary {
+    background: #f8f9fa;
+    border-left: 6px solid var(--cinza-escuro);
+}
+
+.schedule-title {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.schedule-item.critical .schedule-title {
+    color: var(--vermelho-critico);
+}
+
+.schedule-item.warning .schedule-title {
+    color: var(--amarelo-atencao);
+}
+
+.schedule-item.info .schedule-title {
+    color: var(--azul-info);
+}
+
+.schedule-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.schedule-entry {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.schedule-item.critical .schedule-entry {
+    border-left: 4px solid var(--vermelho-critico);
+}
+
+.schedule-item.warning .schedule-entry {
+    border-left: 4px solid var(--amarelo-atencao);
+}
+
+.schedule-item.info .schedule-entry {
+    border-left: 4px solid var(--azul-info);
+}
+
+.schedule-entry-title {
+    font-weight: 700;
+    color: var(--preto-sp);
+    margin-bottom: 0.5rem;
+}
+
+.schedule-entry-desc {
+    color: var(--cinza-medio);
+    font-size: 0.9rem;
+}
+
+.schedule-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+.summary-item {
+    background: white;
+    padding: 0.8rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.summary-item.critical {
+    border-left: 4px solid var(--vermelho-critico);
+}
+
+.summary-item.warning {
+    border-left: 4px solid var(--amarelo-atencao);
+}
+
+.summary-item.info {
+    border-left: 4px solid var(--azul-info);
+}
+
+.summary-item.total {
+    border-left: 4px solid var(--preto-sp);
+}
+
+.summary-label {
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+}
+
+.summary-item.critical .summary-label {
+    color: var(--vermelho-critico);
+}
+
+.summary-item.warning .summary-label {
+    color: var(--amarelo-atencao);
+}
+
+.summary-item.info .summary-label {
+    color: var(--azul-info);
+}
+
+.summary-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--preto-sp);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.feature-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--verde-sucesso);
+}
+
+.feature-text {
+    font-weight: 700;
+    color: var(--preto-sp);
+}
+
+/* Timeline */
+.timeline-title {
+    color: var(--preto-sp);
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.timeline {
+    position: relative;
+    padding: 1.5rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--vermelho-sp), var(--preto-sp));
+}
+
+.timeline-item {
+    position: relative;
+    margin-left: 60px;
+    margin-bottom: 1.8rem;
+    background: var(--branco);
+    padding: 1.8rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
+    border-left: 4px solid var(--vermelho-sp);
+    transition: var(--transition);
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -33px;
+    top: 25px;
+    width: 12px;
+    height: 12px;
+    background: var(--vermelho-sp);
+    border-radius: 50%;
+    border: 3px solid var(--branco);
+    box-shadow: 0 0 0 3px var(--vermelho-sp);
+}
+
+.timeline-item:hover {
+    transform: translateX(8px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.timeline-date {
+    font-weight: 800;
+    color: var(--vermelho-sp);
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+}
+
+.timeline-title {
+    font-weight: 700;
+    color: var(--preto-sp);
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+}
+
+.timeline-desc {
+    color: var(--cinza-medio);
+    line-height: 1.6;
+    font-size: 0.9rem;
+}
+
+/* Organs */
+.organs-section {
+    margin-bottom: 2.5rem;
+}
+
+.organs-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--preto-sp);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 3px solid var(--vermelho-sp);
+    display: inline-block;
+}
+
+.organs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.organ-card {
+    background: var(--branco);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.organ-card:hover {
+    border-color: var(--vermelho-sp);
+    transform: translateX(5px);
+    box-shadow: var(--shadow-light);
+}
+
+.organ-name {
+    font-weight: 600;
+    color: var(--preto-sp);
+    flex: 1;
+    font-size: 0.9rem;
+}
+
+.organ-cnpj {
+    color: var(--cinza-medio);
+    display: block;
+    margin-top: 0.2rem;
+}
+
+.organ-status {
+    color: var(--verde-sucesso);
+    font-weight: 600;
+    display: block;
+    margin-top: 0.2rem;
+}
+
+.organ-status-warning {
+    color: var(--amarelo-atencao);
+    font-weight: 600;
+    display: block;
+    margin-top: 0.2rem;
+}
+
+.organ-contact {
+    color: var(--cinza-medio);
+    display: block;
+    margin-top: 0.5rem;
+    line-height: 1.4;
+}
+
+.organ-contact a {
+    color: var(--vermelho-sp);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.organ-contact a:hover {
+    text-decoration: underline;
+    color: var(--preto-sp);
+}
+
+/* Fale Conosco Layout Vertical com Cards Deitados */
+.fc-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.fc-card {
+    background: var(--branco);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
+    border-left: 4px solid var(--vermelho-sp);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+}
+
+.fc-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--vermelho-sp), var(--preto-sp));
+}
+
+.fc-card:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.fc-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background: var(--cinza-claro);
+    flex-shrink: 0;
+    width: 200px;
+    text-align: center;
+    border-right: 1px solid #f0f0f0;
+}
+
+.fc-icon-box {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--vermelho-sp), var(--preto-sp));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--branco);
+    box-shadow: var(--shadow-light);
+    flex-shrink: 0;
+}
+
+.fc-card-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--preto-sp);
+    margin: 0;
+}
+
+/* Info containers */
+.fc-info-container {
+    padding: 1.5rem;
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fc-info-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    background: var(--cinza-claro);
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.fc-info-item:hover {
+    background: #e9ecef;
+    transform: translateX(3px);
+}
+
+.fc-info-item:last-child {
+    margin-bottom: 0;
+}
+
+.fc-info-bullet {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-top: 3px;
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.8);
+}
+
+.fc-info-bullet.green {
+    background: var(--verde-sucesso);
+}
+
+.fc-info-bullet.yellow {
+    background: var(--amarelo-atencao);
+}
+
+.fc-info-bullet.blue {
+    background: var(--azul-info);
+}
+
+.fc-info-bullet::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    top: -3px;
+    left: -3px;
+    opacity: 0.4;
+    animation: pulse 2s infinite;
+}
+
+.fc-info-bullet.green::after {
+    background: var(--verde-sucesso);
+}
+
+.fc-info-bullet.yellow::after {
+    background: var(--amarelo-atencao);
+}
+
+.fc-info-bullet.blue::after {
+    background: var(--azul-info);
+}
+
+.fc-info-content {
+    flex: 1;
+}
+
+.fc-info-label {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    color: var(--preto-sp);
+}
+
+.fc-info-text {
+    font-size: 0.85rem;
+    color: var(--cinza-medio);
+    line-height: 1.5;
+}
+
+/* Form container */
+.fc-form-container {
+    padding: 1.5rem;
+    flex: 1;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-content: start;
+}
+
+.fc-form-group {
+    margin-bottom: 1rem;
+}
+
+.fc-form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.fc-form-label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: var(--preto-sp);
+}
+
+.fc-form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+.fc-form-control:focus {
+    outline: none;
+    border-color: var(--vermelho-sp);
+    box-shadow: 0 0 0 3px rgba(226, 6, 19, 0.1);
+}
+
+.fc-checkbox-group {
+    margin-top: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.fc-checkbox-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+    padding: 0.3rem;
+}
+
+.fc-checkbox-item input[type="checkbox"] {
+    margin-top: 0.1rem;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.fc-checkbox-item label {
+    font-size: 0.85rem;
+    color: var(--cinza-escuro);
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.fc-submit-btn {
+    background: linear-gradient(135deg, var(--vermelho-sp), var(--preto-sp));
+    color: var(--branco);
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-medium);
+    justify-content: center;
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: fit-content;
+    padding: 0.75rem 2rem;
+}
+
+.fc-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.fc-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.fc-btn-icon {
+    font-size: 1rem;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    text-decoration: none;
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--vermelho-sp), var(--preto-sp));
+    color: var(--branco);
+    box-shadow: var(--shadow-medium);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Chat Widget */
+.chat-widget {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+}
+
+.chat-toggle {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, var(--vermelho-sp), var(--preto-sp));
+    border: none;
+    border-radius: 50%;
+    color: var(--branco);
+    font-size: 1.6rem;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(226, 6, 19, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.chat-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.chat-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(226, 6, 19, 0.5);
+}
+
+.chat-toggle:hover::before {
+    opacity: 1;
+}
+
+.chat-toggle:active {
+    transform: scale(1.05);
+}
+
+.chat-window {
+    position: absolute;
+    bottom: 85px;
+    right: 0;
+    width: 400px;
+    height: 550px;
+    background: var(--branco);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    border: 2px solid var(--vermelho-sp);
+    animation: chatWindowOpen 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes chatWindowOpen {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.chat-header {
+    background: linear-gradient(135deg, var(--vermelho-sp), var(--preto-sp));
+    color: var(--branco);
+    padding: 1.2rem 1.5rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.chat-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+    pointer-events: none;
+}
+
+.chat-close {
+    background: none;
+    border: none;
+    color: var(--branco);
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 0.3rem;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+    font-weight: normal;
+}
+
+.chat-close:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    scrollbar-width: thin;
+    scrollbar-color: var(--vermelho-sp) transparent;
+}
+
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: var(--vermelho-sp);
+    border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: var(--preto-sp);
+}
+
+.chat-input-container {
+    padding: 1.2rem 1.5rem;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    gap: 0.8rem;
+    background: var(--branco);
+}
+
+.chat-input {
+    flex: 1;
+    padding: 0.8rem 1.2rem;
+    border: 2px solid #e9ecef;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-family: inherit;
+}
+
+.chat-input:focus {
+    border-color: var(--vermelho-sp);
+    box-shadow: 0 0 0 3px rgba(226, 6, 19, 0.1);
+}
+
+.chat-input::placeholder {
+    color: var(--cinza-medio);
+}
+
+.chat-send {
+    background: linear-gradient(135deg, var(--vermelho-sp), var(--preto-sp));
+    color: var(--branco);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.chat-send:hover {
+    background: linear-gradient(135deg, var(--preto-sp), var(--vermelho-sp));
+    transform: scale(1.05);
+}
+
+.chat-send:active {
+    transform: scale(0.98);
+}
+
+.message {
+    margin-bottom: 15px;
+    padding: 15px 18px;
+    border-radius: 12px;
+    line-height: 1.6;
+    animation: messageSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 90%;
+    word-wrap: break-word;
+    font-size: 0.95rem;
+}
+
+@keyframes messageSlideIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(15px) scale(0.95); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+.message.user {
+    background: linear-gradient(135deg, var(--vermelho-sp), #c10511);
+    color: var(--branco);
+    margin-left: auto;
+    margin-right: 0;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 2px 8px rgba(226, 6, 19, 0.3);
+}
+
+.message.bot {
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    color: var(--preto-sp);
+    margin-left: 0;
+    margin-right: auto;
+    border-bottom-left-radius: 4px;
+    border: 1px solid #e9ecef;
+    border-left: 4px solid var(--vermelho-sp);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.message.bot strong {
+    color: var(--vermelho-sp);
+    font-weight: 700;
+}
+
+.message.user strong {
+    color: var(--branco);
+    font-weight: 700;
+}
+
+.message.bot code,
+.message.bot .codigo-evento {
+    background: #f1f3f4;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    color: #d73502;
+}
+
+.message.bot ul,
+.message.bot ol {
+    margin: 8px 0;
+    padding-left: 20px;
+}
+
+.message.bot li {
+    margin: 4px 0;
+}
+
+.message.bot .destaque {
+    background: #e8f5e8;
+    padding: 8px;
+    border-radius: 6px;
+    border-left: 3px solid #28a745;
+    margin: 8px 0;
+}
+
+.message.bot .alerta {
+    background: #fff3cd;
+    padding: 8px;
+    border-radius: 6px;
+    border-left: 3px solid #ffc107;
+    margin: 8px 0;
+}
+
+.message.bot .erro {
+    background: #f8d7da;
+    padding: 8px;
+    border-radius: 6px;
+    border-left: 3px solid #dc3545;
+    margin: 8px 0;
+}
+
+/* Footer */
+.footer {
+    background: var(--preto-sp);
+    color: var(--branco);
+    padding: 1.8rem 0;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.footer-copyright {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.footer-system {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+.footer-prototype {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #fff;
+}
+
+.footer-email {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footer-email:hover {
+    color: #ccc;
+    text-decoration: none;
+}
+
+/* Loading Animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(226, 6, 19, 0.2);
+    border-radius: 50%;
+    border-top-color: var(--vermelho-sp);
+    animation: loadingSpin 1s ease-in-out infinite;
+}
+
+@keyframes loadingSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* Notification System */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 1.2rem;
+    border-radius: 10px;
+    color: var(--branco);
+    font-weight: 600;
+    z-index: 9999;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-heavy);
+    min-width: 280px;
+    font-size: 0.9rem;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.success {
+    background: var(--verde-sucesso);
+}
+
+.notification.error {
+    background: var(--vermelho-critico);
+}
+
+.notification.info {
+    background: var(--azul-info);
+}
+
+.notification.warning {
+    background: var(--amarelo-atencao);
+    color: var(--preto-sp);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .fc-card {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .fc-card-header {
+        width: 100%;
+        flex-direction: row;
+        border-right: none;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .fc-form-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .fc-checkbox-group {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.8rem;
+    }
+
+    .portal-title {
+        text-align: center;
+    }
+
+    .portal-name {
+        font-size: 1.5rem;
+    }
+
+    .nav-menu {
+        gap: 0.3rem;
+    }
+
+    .nav-item {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .chat-window {
+        width: 340px;
+        height: 480px;
+        bottom: 75px;
+    }
+    
+    .chat-toggle {
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
+    }
+
+    .timeline {
+        padding-left: 0.8rem;
+    }
+
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item {
+        margin-left: 45px;
+    }
+
+    .timeline-item::before {
+        left: -28px;
+    }
+
+    .organs-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .logo-secretaria {
+        height: 40px;
+        max-width: 200px;
+    }
+
+    .fc-card {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .fc-card-header {
+        width: 100%;
+        flex-direction: row;
+        border-right: none;
+        border-bottom: 1px solid #f0f0f0;
+        padding: 1rem;
+    }
+    
+    .fc-info-container,
+    .fc-form-container {
+        padding: 1rem;
+    }
+    
+    .fc-form-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .fc-checkbox-group {
+        grid-template-columns: 1fr;
+    }
+    
+    .fc-icon-box {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    .fc-card-title {
+        font-size: 1rem;
+    }
+
+    .message {
+        font-size: 0.85rem;
+        padding: 12px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .portal-name {
+        font-size: 1.3rem;
+    }
+
+    .portal-desc {
+        font-size: 0.85rem;
+    }
+    
+    .logo-secretaria {
+        height: 35px;
+        max-width: 150px;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .section-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .chat-window {
+        width: 320px;
+        height: 420px;
+        right: -10px;
+    }
+    
+    .chat-widget {
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+    
+    .message {
+        max-width: 95%;
+        font-size: 0.8rem;
+        padding: 10px 12px;
+    }
+}
+    </style>
+</head>
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <img src="../web/img/logo-secretaria.png" alt="Logo Secretaria de Gestão e Governo Digital - São Paulo" class="logo-secretaria">
+            </div>
+
+            <div class="portal-title">
+                <div class="portal-name">Portal eSocial</div>
+                <div class="portal-desc">Sistema de Escrituração Digital</div>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-menu">
+                <a class="nav-item active" href="#" onclick="showSection('dashboard')" role="button" tabindex="0">
+                    📊 Dashboard
+                </a>
+                <a class="nav-item" href="#" onclick="showSection('news')" role="button" tabindex="0">
+                    📰 Notícias
+                </a>
+                <a class="nav-item" href="#" onclick="showSection('layouts')" role="button" tabindex="0">
+                    📄 Documentação
+                </a>
+                <a class="nav-item" href="#" onclick="showSection('training')" role="button" tabindex="0">
+                    🎯 Capacitação
+                </a>
+                <a class="nav-item" href="#" onclick="showSection('schedule')" role="button" tabindex="0">
+                    📅 Cronograma
+                </a>
+                <a class="nav-item" href="#" onclick="showSection('organs')" role="button" tabindex="0">
+                    🏛️ Órgãos
+                </a>
+                <a class="nav-item" href="#" onclick="showSection('contact')" role="button" tabindex="0">
+                    📞 Fale Conosco
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Dashboard -->
+            <section id="dashboard" class="section active">
+                <div class="section-header">
+                    <h1 class="section-title">Dashboard de Monitoramento</h1>
+                    <p class="section-subtitle">Acompanhamento em tempo real das transmissões eSocial do Estado de São Paulo</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="events-today">3.247</div>
+                        <div class="stat-label">Eventos Transmitidos Hoje</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="success-rate">98.7%</div>
+                        <div class="stat-label">Taxa de Sucesso</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="connected-organs">189</div>
+                        <div class="stat-label">Órgãos Conectados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="active-alerts">12</div>
+                        <div class="stat-label">Alertas Ativos</div>
+                    </div>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">🏛️</div>
+                            <h3 class="card-title">Status dos Órgãos</h3>
+                        </div>
+                        
+                        <!-- Legenda dos Critérios -->
+                        <div class="status-legend">
+                            <div class="legend-title">📋 Critérios de Status:</div>
+                            <div class="legend-items">
+                                <div class="legend-item">
+                                    <div class="status-indicator status-verde mini"></div>
+                                    <span><strong>Verde:</strong> Transmissões OK (últimas 24h)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="status-indicator status-amarelo mini"></div>
+                                    <span><strong>Amarelo:</strong> Pendências ou erros de validação</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="status-indicator status-vermelho mini"></div>
+                                    <span><strong>Vermelho:</strong> Erros críticos ou certificado expirado</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="status-item">
+                            <div class="status-indicator status-verde" aria-label="Status normal - Transmissões funcionando normalmente"></div>
+                            <div class="status-info">
+                                <div class="status-name">Secretaria da Fazenda e Planejamento</div>
+                                <div class="status-desc">Sistema operacional • Última transmissão: 15:42 • S-1200 processado com sucesso</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde" aria-label="Status normal - Transmissões funcionando normalmente"></div>
+                            <div class="status-info">
+                                <div class="status-name">Secretaria da Segurança Pública</div>
+                                <div class="status-desc">Sistema normal • 892 transmissões realizadas • S-2299 e S-1210 processados</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde" aria-label="Status normal - Transmissões funcionando normalmente"></div>
+                            <div class="status-info">
+                                <div class="status-name">Secretaria da Educação</div>
+                                <div class="status-desc">Sistema operacional • 1.453 transmissões • S-1200 e S-2200 atualizados</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-amarelo" aria-label="Status de atenção - Pendências ou erros de validação"></div>
+                            <div class="status-info">
+                                <div class="status-name">Secretaria da Saúde</div>
+                                <div class="status-desc">Pendência detectada • S-1210 com erro de validação • Verificar CPF do trabalhador</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde" aria-label="Status normal - Transmissões funcionando normalmente"></div>
+                            <div class="status-info">
+                                <div class="status-name">Secretaria de Desenvolvimento Social</div>
+                                <div class="status-desc">Sistema normal • 678 eventos • S-1200 e S-1299 transmitidos com sucesso</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-vermelho" aria-label="Status crítico - Erros críticos ou certificado expirado"></div>
+                            <div class="status-info">
+                                <div class="status-name">Secretaria de Meio Ambiente</div>
+                                <div class="status-desc">Erro crítico • S-2200 rejeitado • Código 999: Certificado digital expirado - Renovar certificado</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">📊</div>
+                            <h3 class="card-title">Transmissões Recentes</h3>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde" aria-label="Processado com sucesso"></div>
+                            <div class="status-info">
+                                <div class="status-name">S-1200 - Remuneração do Trabalhador</div>
+                                <div class="status-desc">Processado com sucesso • 15:45 • SEFAZ • 247 registros processados</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde" aria-label="Enviado com sucesso"></div>
+                            <div class="status-info">
+                                <div class="status-name">S-2299 - Desligamento</div>
+                                <div class="status-desc">Enviado com sucesso • 15:30 • SEDUC • 12 desligamentos registrados</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-amarelo" aria-label="Em processamento"></div>
+                            <div class="status-info">
+                                <div class="status-name">S-1210 - Pagamentos de Rendimentos</div>
+                                <div class="status-desc">Pendente • 15:15 • SES • Erro 401: Data de nascimento inválida - Corrigir no cadastro</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde" aria-label="Concluído"></div>
+                            <div class="status-info">
+                                <div class="status-name">S-2200 - Cadastramento Inicial</div>
+                                <div class="status-desc">Concluído • 15:00 • SSP • 89 novos cadastros de servidores</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-vermelho" aria-label="Erro crítico"></div>
+                            <div class="status-info">
+                                <div class="status-name">S-1299 - Fechamento Periódico</div>
+                                <div class="status-desc">Rejeitado • 14:45 • SEDUC • Erro 701: Período já fechado - Solicitar reabertura via protocolo</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde" aria-label="Processado"></div>
+                            <div class="status-info">
+                                <div class="status-name">S-1300 - Contribuições Consolidadas</div>
+                                <div class="status-desc">Processado • 14:30 • SEFAZ • Competência 05/2025 - R$ 2.847.392,15</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">⚠️</div>
+                            <h3 class="card-title">Alertas e Notificações</h3>
+                        </div>
+                        <div class="alert alert-warning">
+                            <span>⚠️</span>
+                            <div>
+                                <strong>Prazo de entrega próximo</strong><br>
+                                S-1299 - Fechamento de eventos periódicos em 2 dias
+                            </div>
+                        </div>
+                        <div class="alert alert-info">
+                            <span>ℹ️</span>
+                            <div>
+                                <strong>Atualização disponível</strong><br>
+                                Nova versão 2.5 do eSocial com melhorias de segurança
+                            </div>
+                        </div>
+                        <div class="alert alert-success">
+                            <span>✅</span>
+                            <div>
+                                <strong>Backup realizado</strong><br>
+                                Backup automático concluído com sucesso às 03:00
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- News -->
+            <section id="news" class="section">
+                <div class="section-header">
+                    <h1 class="section-title">Notícias do eSocial</h1>
+                    <p class="section-subtitle">Acompanhe as últimas atualizações, comunicados e informações importantes</p>
+                </div>
+
+                <div class="news-grid">
+                    <div class="news-card">
+                        <div class="news-content">
+                            <div class="news-date">27 de Junho de 2025</div>
+                            <h3 class="news-title">🚨 Consulte o Status do Sistema eSocial - Semáforo Oficial</h3>
+                            <p class="news-excerpt">Acompanhe em tempo real o status de funcionamento do sistema eSocial através do semáforo oficial do Governo Federal. Verifique se há instabilidades ou manutenções programadas antes de realizar suas transmissões.</p>
+                            <div style="margin-top: 15px;">
+                                <a href="https://www.gov.br/esocial/pt-br/acesso-ao-sistema/semaforo" 
+                                   target="_blank" 
+                                   rel="noopener noreferrer"
+                                   style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #e20613, #000000); color: white; padding: 10px 20px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px; transition: all 0.3s ease;">
+                                    🚦 Acessar Semáforo eSocial
+                                    <span style="font-size: 12px;">🔗</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-content">
+                            <div class="news-date">25 de Junho de 2025</div>
+                            <h3 class="news-title">Nova versão eSocial 2.5 disponível para download</h3>
+                            <p class="news-excerpt">A versão 2.5 do eSocial traz melhorias significativas na validação de dados, novos eventos para o setor público e aprimoramentos na segurança das transmissões. Atualização recomendada para todos os órgãos.</p>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-content">
+                            <div class="news-date">23 de Junho de 2025</div>
+                            <h3 class="news-title">Manutenção programada para este final de semana</h3>
+                            <p class="news-excerpt">O sistema eSocial ficará indisponível no sábado (28/06) das 22h às 6h de domingo para manutenção preventiva e atualizações de segurança. Planeje suas transmissões antecipadamente.</p>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-content">
+                            <div class="news-date">20 de Junho de 2025</div>
+                            <h3 class="news-title">Webinar: Implementação de eventos S-1300</h3>
+                            <p class="news-excerpt">Participe do webinar gratuito sobre as mudanças nos eventos S-1300 para contribuições sociais. Evento online no dia 28/06 às 14h com certificado de participação.</p>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-content">
+                            <div class="news-date">18 de Junho de 2025</div>
+                            <h3 class="news-title">Integração com SST Digital aprovada</h3>
+                            <p class="news-excerpt">Foi aprovada a integração do eSocial com o sistema de Segurança e Saúde no Trabalho Digital, facilitando o cumprimento das obrigações de SST pelos órgãos públicos estaduais.</p>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-content">
+                            <div class="news-date">15 de Junho de 2025</div>
+                            <h3 class="news-title">Relatório mensal de transmissões publicado</h3>
+                            <p class="news-excerpt">O relatório consolidado de maio de 2025 está disponível para download, apresentando estatísticas detalhadas das transmissões realizadas pelos órgãos estaduais.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Layouts -->
+            <section id="layouts" class="section">
+                <div class="section-header">
+                    <h1 class="section-title">Guias e Documentos</h1>
+                    <p class="section-subtitle">Acesse a documentação técnica, leiautes e manuais para implementação do eSocial</p>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">📋</div>
+                            <h3 class="card-title">Guais de Eventos Periódicos</h3>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">S-1200 - Remuneração do Trabalhador</div>
+                                <div class="status-desc">Leiaute v2.5 • Atualizado em Jun/2025</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">S-1210 - Pagamentos de Rendimentos</div>
+                                <div class="status-desc">Leiaute v2.5 • Novas validações incluídas</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-amarelo"></div>
+                            <div class="status-info">
+                                <div class="status-name">S-1299 - Fechamento dos Eventos</div>
+                                <div class="status-desc">Leiaute v2.4 • Atualização prevista Jul/2025</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">S-1300 - Contribuições Consolidadas</div>
+                                <div class="status-desc">Leiaute v2.5 • Implementação obrigatória</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">📄</div>
+                            <h3 class="card-title">Guias deEventos Não Periódicos</h3>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">S-2200 - Cadastramento Inicial</div>
+                                <div class="status-desc">Leiaute v2.5 • Campos obrigatórios atualizados</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">S-2299 - Desligamento</div>
+                                <div class="status-desc">Leiaute v2.5 • Novos códigos de rescisão</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">S-2300 - Trabalhador Sem Vínculo</div>
+                                <div class="status-desc">Leiaute v2.4 • Estável</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">S-3000 - Exclusão de Eventos</div>
+                                <div class="status-desc">Leiaute v2.5 • Melhorias na validação</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">📚</div>
+                            <h3 class="card-title">Documentação e Manuais</h3>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">Manual de Orientação eSocial</div>
+                                <div class="status-desc">Versão 2.5 • Guia completo de implementação</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">Tabelas de Códigos</div>
+                                <div class="status-desc">Atualizada em Jun/2025 • Novos códigos incluídos</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">Manual Técnico de Implementação</div>
+                                <div class="status-desc">Para desenvolvedores • Exemplos práticos</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">FAQ - Perguntas Frequentes</div>
+                                <div class="status-desc">Respostas às dúvidas mais comuns</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- training -->
+            <section id="training" class="section">
+                <div class="section-header">
+                    <h1 class="section-title">Capacitações e Treinamentos</h1>
+                    <p class="section-subtitle">Participe de webinars, treinamentos e workshops sobre o eSocial</p>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">🎯</div>
+                            <h3 class="card-title">Agenda de Capacitações</h3>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">28 de Junho - 14h</div>
+                                <div class="status-desc">Webinar: Implementação do eSocial no Setor Público • Inscrições abertas</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-amarelo"></div>
+                            <div class="status-info">
+                                <div class="status-name">5 de Julho - 9h</div>
+                                <div class="status-desc">Treinamento: Validação de Dados no eSocial • Vagas limitadas</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">12 de Julho - 14h</div>
+                                <div class="status-desc">Workshop: Resolução de Erros Comuns • Presencial e online</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">20 de Julho - 10h</div>
+                                <div class="status-desc">Mesa Redonda: Futuro do eSocial • Participação gratuita</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">📅</div>
+                            <h3 class="card-title">Capacitações Concluídas</h3>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">20 de Junho</div>
+                                <div class="status-desc">Webinar: Nova versão 2.5 do eSocial • 347 participantes</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">15 de Junho</div>
+                                <div class="status-desc">Treinamento: Eventos S-1300 • Material disponível</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">10 de Junho</div>
+                                <div class="status-desc">Mesa Redonda: Desafios do eSocial • Gravação disponível</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">5 de Junho</div>
+                                <div class="status-desc">Workshop: Migração para v2.5 • Certificados emitidos</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon">🎓</div>
+                            <h3 class="card-title">Cursos e Certificações</h3>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">Curso Básico eSocial</div>
+                                <div class="status-desc">20 horas • Certificado reconhecido • Início toda segunda</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-verde"></div>
+                            <div class="status-info">
+                                <div class="status-name">Curso Avançado eSocial</div>
+                                <div class="status-desc">40 horas • Para gestores • Próxima turma em julho</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-indicator status-amarelo"></div>
+                            <div class="status-info">
+                                <div class="status-name">Certificação Técnica</div>
+                                <div class="status-desc">80 horas • Para implementadores • Inscrições abertas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Schedule -->
+            <section id="schedule" class="section">
+                <div class="section-header">
+                    <h1 class="section-title">Cronograma de Implementação</h1>
+                    <p class="section-subtitle">Acompanhe os marcos, prazos importantes e cronograma de envios do eSocial</p>
+                </div>
+
+                <!-- Cronograma de Próximos Envios -->
+                <div class="schedule-box primary-box">
+                    <h2 class="schedule-header">📅 Cronograma de Próximos Envios</h2>
+
+                    <!-- HOJE -->
+                    <div class="schedule-item critical">
+                        <h3 class="schedule-title">📌 HOJE - 25/06/2025 (Prazo Crítico)</h3>
+                        <div class="schedule-content">
+                            <div class="schedule-entry">
+                                <div class="schedule-entry-title">• S-1200 - Remuneração (até 23:59h)</div>
+                                <div class="schedule-entry-desc">• Órgãos: SEFAZ, SEDUC, SES • 3 órgãos</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AMANHÃ -->
+                    <div class="schedule-item warning">
+                        <h3 class="schedule-title">📋 AMANHÃ - 26/06/2025</h3>
+                        <div class="schedule-content">
+                            <div class="schedule-entry">
+                                <div class="schedule-entry-title">• S-1210 - Pagamentos de Rendimentos</div>
+                                <div class="schedule-entry-desc">• Órgãos: SSP, Turismo, SABESP • 5 órgãos</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRÓXIMOS 7 DIAS -->
+                    <div class="schedule-item info">
+                        <h3 class="schedule-title">📊 PRÓXIMOS 7 DIAS</h3>
+                        <div class="schedule-content">
+                            <div class="schedule-entry">
+                                <div class="schedule-entry-title">• 30/06 - S-1299 Fechamento Periódico</div>
+                                <div class="schedule-entry-desc">• Todos os órgãos - Competência 05/2025</div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-entry-title">• 02/07 - S-1300 Contribuições</div>
+                                <div class="schedule-entry-desc">• IPESP, CDHU, DERSA • 8 órgãos</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Envios Atrasados -->
+                <div class="schedule-box critical-box">
+                    <h2 class="schedule-header">⚠️ Envios Atrasados (Classificados por Prioridade)</h2>
+
+                    <!-- CRÍTICO -->
+                    <div class="schedule-item critical">
+                        <h3 class="schedule-title">🚨 CRÍTICO - Mais de 5 dias</h3>
+                        <div class="schedule-content">
+                            <div class="schedule-entry">
+                                <div class="schedule-entry-title">• Secretaria de Meio Ambiente - S-2200 • 7 dias • Certificado expirado</div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-entry-title">• JUCESP - S-1200 • 6 dias • Problema técnico</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ALTO -->
+                    <div class="schedule-item warning">
+                        <h3 class="schedule-title">⚠️ ALTO - 2 a 5 dias</h3>
+                        <div class="schedule-content">
+                            <div class="schedule-entry">
+                                <div class="schedule-entry-title">• Secretaria da Saúde - S-1210 • 4 dias • Validação CPF pendente</div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-entry-title">• EMTU - S-1200 • 3 dias • Inconsistência de dados</div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-entry-title">• Secretaria de Turismo - S-2299 • 2 dias • Aguardando RH</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BAIXO -->
+                    <div class="schedule-item info">
+                        <h3 class="schedule-title">📋 BAIXO - 1 dia</h3>
+                        <div class="schedule-content">
+                            <div class="schedule-entry">
+                                <div class="schedule-entry-title">• CETESB - S-1299 • 1 dia • Em processamento</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RESUMO -->
+                    <div class="schedule-item summary">
+                        <h3 class="schedule-title">📊 Resumo dos Atrasos</h3>
+                        <div class="schedule-summary">
+                            <div class="summary-item critical">
+                                <div class="summary-label">🔴 Crítico</div>
+                                <div class="summary-value">2 órgãos</div>
+                            </div>
+                            <div class="summary-item warning">
+                                <div class="summary-label">🟡 Alto</div>
+                                <div class="summary-value">3 órgãos</div>
+                            </div>
+                            <div class="summary-item info">
+                                <div class="summary-label">🔵 Baixo</div>
+                                <div class="summary-value">1 órgão</div>
+                            </div>
+                            <div class="summary-item total">
+                                <div class="summary-label">📋 Total</div>
+                                <div class="summary-value">6 órgãos</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Funcionalidades -->
+                <div class="schedule-box success-box">
+                    <h2 class="schedule-header">🎯 Funcionalidades do Sistema</h2>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feature-text">• Priorização por cores e níveis de urgência</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-text">• Contagem de dias de atraso específicos</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-text">• Motivos detalhados dos atrasos</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-text">• Cronograma visual com datas próximas</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-text">• Resumo consolidado de estatísticas</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-text">• Ações necessárias para cada caso</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Original -->
+                <h2 class="timeline-title">📋 Marcos de Implementação 2025</h2>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Julho 2025</div>
+                        <div class="timeline-title">Implementação Obrigatória - Eventos S-1300</div>
+                        <div class="timeline-desc">Todos os órgãos estaduais devem implementar os eventos S-1300 para contribuições sociais consolidadas. Prazo final: 31 de julho de 2025.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Agosto 2025</div>
+                        <div class="timeline-title">Integração SST Digital</div>
+                        <div class="timeline-desc">Lançamento da integração com o sistema de Segurança e Saúde no Trabalho Digital, facilitando o cumprimento das obrigações de SST.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Setembro 2025</div>
+                        <div class="timeline-title">Novos Relatórios Analíticos</div>
+                        <div class="timeline-desc">Disponibilização de relatórios analíticos avançados para acompanhamento detalhado dos dados transmitidos e indicadores de qualidade.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Outubro 2025</div>
+                        <div class="timeline-title">API v3.0</div>
+                        <div class="timeline-desc">Lançamento da nova versão da API do eSocial com melhorias significativas de performance, segurança e novas funcionalidades.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Novembro 2025</div>
+                        <div class="timeline-title">Portal de Business Intelligence</div>
+                        <div class="timeline-desc">Lançamento do portal de BI com dashboards interativos e análises preditivas para gestão estratégica dos dados do eSocial.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Dezembro 2025</div>
+                        <div class="timeline-title">Fechamento do Exercício</div>
+                        <div class="timeline-desc">Processo de fechamento anual com validações especiais e geração de relatórios consolidados para prestação de contas.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Organs -->
+            <section id="organs" class="section">
+                <div class="section-header">
+                    <h1 class="section-title">Órgãos da Administração</h1>
+                    <p class="section-subtitle">Status de conectividade e transmissões dos órgãos estaduais</p>
+                </div>
+                
+                <div class="organs-section">
+                    <h3 class="organs-title">Administração Direta</h3>
+                    <div class="organs-grid">
+                        <div class="organ-card">
+                            <div class="status-indicator status-verde" aria-label="Status operacional"></div>
+                            <div class="organ-name">
+                                <strong>Secretaria da Fazenda e Planejamento</strong><br>
+                                <small class="organ-cnpj">CNPJ: 46.377.222/0001-09</small><br>
+                                <small class="organ-status">Conforme • 100% de transmissões OK</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Carlos Silva Santos</strong><br>
+                                    E-mail: <a href="mailto:carlos.santos@emailfake.com.br">carlos.santos@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-verde" aria-label="Status operacional"></div>
+                            <div class="organ-name">
+                                <strong>Secretaria da Segurança Pública</strong><br>
+                                <small class="organ-cnpj">CNPJ: 46.377.222/0001-90</small><br>
+                                <small class="organ-status">Conforme • Envios regulares</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Ana Paula Oliveira</strong><br>
+                                    E-mail: <a href="mailto:ana.oliveira@emailfake.com.br">ana.oliveira@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-verde" aria-label="Status operacional"></div>
+                            <div class="organ-name">
+                                <strong>Secretaria da Educação</strong><br>
+                                <small class="organ-cnpj">CNPJ: 46.377.222/0007-76</small><br>
+                                <small class="organ-status">Conforme • 98,7% de sucesso</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Maria Fernanda Costa</strong><br>
+                                    E-mail: <a href="mailto:maria.costa@emailfake.com.br">maria.costa@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-amarelo" aria-label="Status de atenção"></div>
+                            <div class="organ-name">
+                                <strong>Secretaria da Saúde</strong><br>
+                                <small class="organ-cnpj">CNPJ: 46.377.222/0008-57</small><br>
+                                <small class="organ-status-warning">Irregularidade • Validações pendentes</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>João Pedro Lima</strong><br>
+                                    E-mail: <a href="mailto:joao.lima@emailfake.com.br">joao.lima@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-verde" aria-label="Status operacional"></div>
+                            <div class="organ-name">
+                                <strong>Secretaria de Desenvolvimento Social</strong><br>
+                                <small class="organ-cnpj">CNPJ: 46.377.222/0002-71</small><br>
+                                <small class="organ-status">Conforme • Envios em dia</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Roberta Almeida Sousa</strong><br>
+                                    E-mail: <a href="mailto:roberta.sousa@emailfake.com.br">roberta.sousa@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-verde" aria-label="Status operacional"></div>
+                            <div class="organ-name">
+                                <strong>Secretaria de Meio Ambiente</strong><br>
+                                <small class="organ-cnpj">CNPJ: 46.377.222/0003-52</small><br>
+                                <small class="organ-status">Conforme • Última transmissão: hoje</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Ricardo Mendes Silva</strong><br>
+                                    E-mail: <a href="mailto:ricardo.silva@emailfake.com.br">ricardo.silva@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-verde" aria-label="Status operacional"></div>
+                            <div class="organ-name">
+                                <strong>Secretaria de Desenvolvimento Econômico</strong><br>
+                                <small class="organ-cnpj">CNPJ: 46.377.222/0004-33</small><br>
+                                <small class="organ-status">Conforme • 15 dias sem pendências</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Fernanda Ribeiro Gomes</strong><br>
+                                    E-mail: <a href="mailto:fernanda.gomes@emailfake.com.br">fernanda.gomes@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-amarelo" aria-label="Status de atenção"></div>
+                            <div class="organ-name">
+                                <strong>Secretaria de Turismo</strong><br>
+                                <small class="organ-cnpj">CNPJ: 46.377.222/0005-14</small><br>
+                                <small class="organ-status-warning">Pendente • Atraso de 3 dias nos envios</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Paulo César Martins</strong><br>
+                                    E-mail: <a href="mailto:paulo.martins@emailfake.com.br">paulo.martins@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-verde" aria-label="Status operacional"></div>
+                            <div class="organ-name">
+                                <strong>Secretaria de Esportes</strong><br>
+                                <small class="organ-cnpj">CNPJ: 46.377.222/0006-95</small><br>
+                                <small class="organ-status">Conforme • Envios automatizados</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Luciana Rodrigues Nunes</strong><br>
+                                    E-mail: <a href="mailto:luciana.nunes@emailfake.com.br">luciana.nunes@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-verde" aria-label="Status operacional"></div>
+                            <div class="organ-name">
+                                <strong>Secretaria da Cultura</strong><br>
+                                <small class="organ-cnpj">CNPJ: 46.377.222/0009-38</small><br>
+                                <small class="organ-status">Conforme • Migração concluída</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Gabriel Augusto Ferreira</strong><br>
+                                    E-mail: <a href="mailto:gabriel.ferreira@emailfake.com.br">gabriel.ferreira@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="organs-section">
+                    <h3 class="organs-title">Administração Indireta</h3>
+                    <div class="organs-grid">
+                        <div class="organ-card">
+                            <div class="status-indicator status-verde" aria-label="Status operacional"></div>
+                            <div class="organ-name">
+                                <strong>IPESP - Instituto de Previdência</strong><br>
+                                <small class="organ-cnpj">CNPJ: 62.823.961/0001-12</small><br>
+                                <small class="organ-status">Conforme • Envios diários regulares</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Marcos Antonio Silva</strong><br>
+                                    E-mail: <a href="mailto:marcos.silva@emailfake.com.br">marcos.silva@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-verde" aria-label="Status operacional"></div>
+                            <div class="organ-name">
+                                <strong>FDE - Fundação para o Desenvolvimento da Educação</strong><br>
+                                <small class="organ-cnpj">CNPJ: 62.823.961/0002-93</small><br>
+                                <small class="organ-status">Conforme • 2.345 transmissões OK</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Juliana Santos Pereira</strong><br>
+                                    E-mail: <a href="mailto:juliana.pereira@emailfake.com.br">juliana.pereira@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-amarelo" aria-label="Status de atenção"></div>
+                            <div class="organ-name">
+                                <strong>CETESB - Companhia Ambiental</strong><br>
+                                <small class="organ-cnpj">CNPJ: 51.536.751/0001-00</small><br>
+                                <small class="organ-status-warning">Pendente • Certificado expira em 15 dias</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Eduardo Carvalho Lima</strong><br>
+                                    E-mail: <a href="mailto:eduardo.lima@emailfake.com.br">eduardo.lima@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-verde" aria-label="Status operacional"></div>
+                            <div class="organ-name">
+                                <strong>PRODESP - Companhia de Processamento de Dados</strong><br>
+                                <small class="organ-cnpj">CNPJ: 74.198.999/0001-83</small><br>
+                                <small class="organ-status">Conforme • Sistema automatizado ativo</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Patricia Moreira Costa</strong><br>
+                                    E-mail: <a href="mailto:patricia.costa@emailfake.com.br">patricia.costa@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-verde" aria-label="Status operacional"></div>
+                            <div class="organ-name">
+                                <strong>CDHU - Companhia de Desenvolvimento Habitacional</strong><br>
+                                <small class="organ-cnpj">CNPJ: 47.865.597/0001-09</small><br>
+                                <small class="organ-status">Conforme • Folha de maio processada</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Roberto Henrique Souza</strong><br>
+                                    E-mail: <a href="mailto:roberto.souza@emailfake.com.br">roberto.souza@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-verde" aria-label="Status operacional"></div>
+                            <div class="organ-name">
+                                <strong>SABESP - Companhia de Saneamento Básico</strong><br>
+                                <small class="organ-cnpj">CNPJ: 43.776.517/0001-80</small><br>
+                                <small class="organ-status">Conforme • 99,2% de transmissões OK</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Camila Rodrigues Alves</strong><br>
+                                    E-mail: <a href="mailto:camila.alves@emailfake.com.br">camila.alves@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-verde" aria-label="Status operacional"></div>
+                            <div class="organ-name">
+                                <strong>DERSA - Desenvolvimento Rodoviário S.A.</strong><br>
+                                <small class="organ-cnpj">CNPJ: 61.453.514/0001-35</small><br>
+                                <small class="organ-status">Conforme • Envios automatizados</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>André Luis Barbosa</strong><br>
+                                    E-mail: <a href="mailto:andre.barbosa@emailfake.com.br">andre.barbosa@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-verde" aria-label="Status operacional"></div>
+                            <div class="organ-name">
+                                <strong>EMTU - Empresa Metropolitana de Transportes Urbanos</strong><br>
+                                <small class="organ-cnpj">CNPJ: 59.545.344/0001-30</small><br>
+                                <small class="organ-status">Conforme • Sistema integrado ativo</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Renata Oliveira Santos</strong><br>
+                                    E-mail: <a href="mailto:renata.santos@emailfake.com.br">renata.santos@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="organ-card">
+                            <div class="status-indicator status-verde" aria-label="Status operacional"></div>
+                            <div class="organ-name">
+                                <strong>JUCESP - Junta Comercial do Estado</strong><br>
+                                <small class="organ-cnpj">CNPJ: 62.823.257/0001-09</small><br>
+                                <small class="organ-status">Conforme • Transmissões em dia</small><br>
+                                <small class="organ-contact">
+                                    Responsável: <strong>Felipe Nascimento Cruz</strong><br>
+                                    E-mail: <a href="mailto:felipe.cruz@emailfake.com.br">felipe.cruz@emailfake.com.br</a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact - Seção Fale Conosco com Layout Vertical Deitado -->
+            <section id="contact" class="section">
+                <div class="section-header">
+                    <h1 class="section-title">Fale Conosco</h1>
+                    <p class="section-subtitle">Entre em contato conosco através dos canais disponíveis</p>
+                </div>
+
+                <div class="fc-grid">
+                    <!-- Card 1: Solicitação de Suporte -->
+                    <div class="fc-card">
+                        <div class="fc-card-header">
+                            <div class="fc-icon-box">
+                                <span>📝</span>
+                            </div>
+                            <h3 class="fc-card-title">Solicitação Suporte eSocial</h3>
+                        </div>
+
+                        <form id="contactForm" class="fc-form-container" onsubmit="handleFormSubmit(event)">
+                            <div class="fc-form-group full-width">
+                                <label class="fc-form-label">Tipos de Solicitação (selecione uma ou mais opções)</label>
+                                <div class="fc-checkbox-group">
+                                    <div class="fc-checkbox-item">
+                                        <input type="checkbox" id="duvidas-gerais" name="request-type" value="duvidas-gerais"> 
+                                        <label for="duvidas-gerais">Dúvidas gerais sobre o processo</label>
+                                    </div>
+                                    <div class="fc-checkbox-item">
+                                        <input type="checkbox" id="correcoes-dados" name="request-type" value="correcoes-dados"> 
+                                        <label for="correcoes-dados">Correções de dados enviados</label>
+                                    </div>
+                                    <div class="fc-checkbox-item">
+                                        <input type="checkbox" id="reenvios-arquivos" name="request-type" value="reenvios-arquivos"> 
+                                        <label for="reenvios-arquivos">Reenvios de arquivos com pendências</label>
+                                    </div>
+                                    <div class="fc-checkbox-item">
+                                        <input type="checkbox" id="orientacoes-retornos" name="request-type" value="orientacoes-retornos"> 
+                                        <label for="orientacoes-retornos">Orientações sobre tratamento de retornos de erro</label>
+                                    </div>
+                                    <div class="fc-checkbox-item">
+                                        <input type="checkbox" id="certificado-digital" name="request-type" value="certificado-digital"> 
+                                        <label for="certificado-digital">Orientações de solicitação de certificado digital</label>
+                                    </div>
+                                    <div class="fc-checkbox-item">
+                                        <input type="checkbox" id="solicitacao-procuracao" name="request-type" value="solicitacao-procuracao"> 
+                                        <label for="solicitacao-procuracao">Orientação de solicitação de Procuração</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="fc-form-group">
+                                <label for="solicitor-name" class="fc-form-label">Nome do Solicitante</label>
+                                <input type="text" id="solicitor-name" name="solicitor-name" class="fc-form-control">
+                            </div>
+                            
+                            <div class="fc-form-group">
+                                <label for="email" class="fc-form-label">E-mail</label>
+                                <input type="email" id="email" name="email" class="fc-form-control">
+                            </div>
+
+                            <div class="fc-form-group">
+                                <label for="phone" class="fc-form-label">Telefone de Contato</label>
+                                <input type="tel" id="phone" name="phone" class="fc-form-control" required>
+                            </div>
+                            
+                            <div class="fc-form-group">
+                                <label for="organ" class="fc-form-label">Órgão</label>
+                                <select id="organ" name="organ" class="fc-form-control">
+                                    <option value="">Selecione seu órgão</option>
+                                    <option value="sefaz">Secretaria da Fazenda</option>
+                                    <option value="seduc">Secretaria da Educação</option>
+                                    <option value="ses">Secretaria da Saúde</option>
+                                    <option value="ssp">Secretaria da Segurança</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="fc-form-group">
+                                <label for="reference-period" class="fc-form-label">Período de Referência</label>
+                                <input type="text" id="reference-period" name="reference-period" class="fc-form-control" placeholder="Ex: 01/2025 ou Janeiro/2025" required>
+                            </div>
+
+                            <div class="fc-form-group">
+                                <label for="attachments" class="fc-form-label">Anexos Necessários/Evidências</label>
+                                <input type="file" id="attachments" name="attachments" class="fc-form-control" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.zip">
+                                <small class="file-info">
+                                    Formatos aceitos: PDF, DOC, DOCX, JPG, PNG, ZIP (máx. 10MB por arquivo)
+                                </small>
+                            </div>
+                            
+                            <div class="fc-form-group full-width">
+                                <label for="detailed-description" class="fc-form-label">Descrição Detalhada da Demanda</label>
+                                <textarea id="detailed-description" name="detailed-description" rows="3" class="fc-form-control" placeholder="Descreva detalhadamente sua solicitação, incluindo todas as informações relevantes..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="fc-submit-btn">
+                                <span class="fc-btn-icon">📤</span> Enviar Solicitação
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Card 2: Canais de Atendimento -->
+                    <div class="fc-card">
+                        <div class="fc-card-header">
+                            <div class="fc-icon-box">
+                                <span>📞</span>
+                            </div>
+                            <h3 class="fc-card-title">Canais de Atendimento</h3>
+                        </div>
+
+                        <div class="fc-info-container">
+                            <div class="fc-info-item">
+                                <div class="fc-info-bullet yellow"></div>
+                                <div class="fc-info-content">
+                                    <div class="fc-info-label">Central de Atendimento</div>
+                                    <div class="fc-info-text">0800 123 4567 • Segunda a sexta: 8h às 18h</div>
+                                </div>
+                            </div>
+
+                            <div class="fc-info-item">
+                                <div class="fc-info-bullet green"></div>
+                                <div class="fc-info-content">
+                                    <div class="fc-info-label">E-mail</div>
+                                    <div class="fc-info-text">suporte_esocial@sp.gov.br • Resposta em até 24h</div>
+                                </div>
+                            </div>
+
+                            <div class="fc-info-item">
+                                <div class="fc-info-bullet green"></div>
+                                <div class="fc-info-content">
+                                    <div class="fc-info-label">Chat Online</div>
+                                    <div class="fc-info-text">Disponível 24/7 através do agente virtual</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Localização -->
+                    <div class="fc-card">
+                        <div class="fc-card-header">
+                            <div class="fc-icon-box">
+                                <span>📍</span>
+                            </div>
+                            <h3 class="fc-card-title">Localização</h3>
+                        </div>
+
+                        <div class="fc-info-container">
+                            <div class="fc-info-item">
+                                <div class="fc-info-bullet yellow"></div>
+                                <div class="fc-info-content">
+                                    <div class="fc-info-label">Endereço</div>
+                                    <div class="fc-info-text">Av. Paulista, 1.804 - Bela Vista<br>CEP: 01310-922 - São Paulo/SP</div>
+                                </div>
+                            </div>
+                            <div class="fc-info-item">
+                                <div class="fc-info-bullet green"></div>
+                                <div class="fc-info-content">
+                                    <div class="fc-info-label">Horário de Funcionamento</div>
+                                    <div class="fc-info-text">Segunda a sexta: 9h às 17h<br>Sábados, domingos e feriados: Fechado</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-toggle" onclick="toggleChat()" aria-label="Abrir chat de suporte">
+            🤖
+        </button>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <span>🤖 Assistente Virtual eSocial</span>
+                <button class="chat-close" onclick="toggleChat()" aria-label="Fechar chat">×</button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    👋 Olá! Sou o <strong>Assistente Inteligente do eSocial SP</strong>! 
+                    
+                    Estou aqui para ajudar os órgãos estaduais.
+                    
+                    <strong>Digite sua dúvida ou código de erro que vou te orientar!</strong> 💬
+                </div>
+            </div>
+            <div class="chat-input-container">
+                <input type="text" id="chatInput" class="chat-input" placeholder="Digite sua mensagem..." onkeypress="handleChatKeyPress(event)">
+                <button class="chat-send" onclick="sendChatMessage()">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-copyright">
+                        © 2025 Governo do Estado de São Paulo - Secretaria de Governo e Gestão Digital
+                    </div>
+                    <div class="footer-system">
+                        Portal eSocial - Sistema de Escrituração Digital das Obrigações Fiscais, Previdenciárias e Trabalhistas
+                    </div>
+                    <div class="footer-prototype">
+                        Protótipo desenvolvido por: Egliane da Costa Santos Silva (<a href="mailto:ecssilva@apoioprodesp.sp.gov.br" class="footer-email">ecssilva@apoioprodesp.sp.gov.br</a>)
+                        e Luciana Silveira (<a href="mailto:lsilveira@apoioprodesp.sp.gov.br" class="footer-email">lsilveira@apoioprodesp.sp.gov.br</a>)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+// Portal eSocial SP - Main JavaScript
+// Global Variables
+let chatOpen = false;
+let currentSection = 'dashboard';
+
+// Navigation Functions
+function showSection(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+    });
+
+    // Remove active class from all nav items
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+    });
+
+    // Show selected section
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        targetSection.classList.add('active');
+    }
+
+    // Add active class to clicked nav item
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
+
+    currentSection = sectionId;
+
+    // Store current section (if available)
+    try {
+        sessionStorage.setItem('currentSection', sectionId);
+    } catch (e) {
+        console.log('SessionStorage not available');
+    }
+}
+
+// =====================================================
+// ASSISTENTE VIRTUAL ESOCIAL - INÍCIO
+// =====================================================
+
+/**
+ * 🎯 BASE DE CONHECIMENTO DO ESOCIAL
+ * Baseada no relatório de erros fornecido
+ */
+const esocialKnowledgeBase = {
+    // ===== ERROS E SOLUÇÕES =====
+    erros: [
+        {
+            codigo: "S-2200, S-2300",
+            categoria: "Categoria inválida",
+            problema: "categoria informada deve ser relativa a Segurado Empregado",
+            solucao: "Não deve enviar cadastro para categoria 701 - NADA A PROVIDENCIAR",
+            palavrasChave: ["categoria", "701", "segurado", "empregado", "inválida"]
+        },
+        {
+            codigo: "S-2200, S-2300",
+            categoria: "Data de admissão",
+            problema: "data de admissão anterior à abertura do CNPJ",
+            solucao: "Deverá ser informado a Secretaria que ingressou no cargo/emprego conforme item 5.1.1 do manual",
+            palavrasChave: ["admissão", "cnpj", "abertura", "vigência", "anterior"]
+        },
+        {
+            codigo: "S-2200, S-2300",
+            categoria: "Divergência CPF",
+            problema: "data de nascimento divergente da RFB",
+            solucao: "Oriente o trabalhador para procurar unidade conveniada da RFB para atualizar dados",
+            palavrasChave: ["nascimento", "rfb", "divergente", "cpf", "trabalhador"]
+        },
+        {
+            codigo: "S-2200, S-2300",
+            categoria: "Estrutura XML",
+            problema: "arquivo XML em desconformidade com esquema XSD",
+            solucao: "Comunicar a equipe do eSocial responsável pela transmissão para correção",
+            palavrasChave: ["xml", "xsd", "estrutura", "esquema", "desconformidade"]
+        },
+        {
+            codigo: "S-2200, S-2300",
+            categoria: "CNPJ inválido",
+            problema: "CNPJ do empregador ou estabelecimento inválido",
+            solucao: "Verificar se o CNPJ do Empregador e/ou Estabelecimento e corrigir a informação",
+            palavrasChave: ["cnpj", "inválido", "empregador", "estabelecimento"]
+        },
+        {
+            codigo: "S-1200, S-1202",
+            categoria: "Categoria incompatível",
+            problema: "evento de remuneração incompatível com categoria",
+            solucao: "S-1200 para RGPS (ex: 101, 302, 306, 701); S-1202 para RPPS (ex: 301, 307)",
+            palavrasChave: ["remuneração", "categoria", "rgps", "rpps", "incompatível"]
+        },
+        {
+            codigo: "S-1200, S-1202",
+            categoria: "Rubrica não encontrada",
+            problema: "rubrica não existe no cadastro para o período",
+            solucao: "Verificar junto ao DDPE o envio e/ou ajuste da Rubrica",
+            palavrasChave: ["rubrica", "cadastro", "período", "ddpe", "não existe"]
+        },
+        {
+            codigo: "S-1200, S-1202",
+            categoria: "Devolução contribuição",
+            problema: "somatório de descontos negativos (devolução CP/IRPF/FGTS)",
+            solucao: "Providenciar alteração de critério - folhas devem ser enviadas sem devolução",
+            palavrasChave: ["devolução", "contribuição", "negativo", "desconto", "cp", "irpf", "fgts"]
+        },
+        {
+            codigo: "Todos",
+            categoria: "Duplicidade",
+            problema: "evento duplicado ou enviado em lotes simultâneos",
+            solucao: "Nada a providenciar - erro automático do sistema",
+            palavrasChave: ["duplicidade", "lote", "simultâneo", "duplicado"]
+        },
+        {
+            codigo: "S-2200, S-2300",
+            categoria: "Campo obrigatório",
+            problema: "campos obrigatórios não preenchidos",
+            solucao: "Administração Direta - Comunicar equipe eSocial; Administração Indireta - Corrigir arquivo extração",
+            palavrasChave: ["campo", "obrigatório", "preenchimento", "administração"]
+        },
+        {
+            codigo: "S-1200, S-1202",
+            categoria: "Lotação tributária",
+            problema: "lotação não existe ou incompatível",
+            solucao: "Comunicar a equipe do eSocial responsável pela transmissão para correção",
+            palavrasChave: ["lotação", "tributária", "incompatível", "s-1020"]
+        }
+    ],
+
+    // ===== CÓDIGOS DE ERRO ESPECÍFICOS =====
+    codigosErro: {
+        "401": "Data de nascimento inválida - Corrigir no cadastro",
+        "701": "Período já fechado - Solicitar reabertura via protocolo", 
+        "999": "Certificado digital expirado - Renovar certificado"
+    },
+
+    // ===== DICAS GERAIS =====
+    dicasGerais: [
+        "📋 Para erros de categoria: Verificar se está usando S-1200 (RGPS) ou S-1202 (RPPS) correto",
+        "🔧 Para erros de XML: Entrar em contato com equipe técnica responsável",
+        "📅 Para erros de data: Verificar se as datas estão dentro dos períodos válidos",
+        "🏛️ Para órgãos da Administração Direta: Comunicar equipe do eSocial",
+        "🏢 Para órgãos da Administração Indireta: Corrigir arquivo de extração",
+        "📞 Para casos complexos use o telefone 0800 123 4567"
+    ]
+};
+
+/**
+ * 🤖 CLASSE PRINCIPAL DO ASSISTENTE INTELIGENTE
+ */
+class ESocialAssistant {
+    constructor() {
+        this.isOpen = false;
+        this.setupEventListeners();
+        this.addWelcomeMessage();
+    }
+
+    setupEventListeners() {
+        // Sobrescrever as funções globais existentes
+        window.toggleChat = () => this.toggleChat();
+        window.sendChatMessage = () => this.sendMessage();
+        window.handleChatKeyPress = (event) => {
+            if (event.key === 'Enter') {
+                this.sendMessage();
+            }
+        };
+    }
+
+    toggleChat() {
+        const chatWindow = document.getElementById('chatWindow');
+        const chatToggle = document.querySelector('.chat-toggle');
+        
+        if (chatWindow) {
+            this.isOpen = !this.isOpen;
+            chatWindow.style.display = this.isOpen ? 'flex' : 'none';
+            
+            if (this.isOpen) {
+                const chatInput = document.getElementById('chatInput');
+                if (chatInput) {
+                    chatInput.focus();
+                }
+            }
+        }
+        
+        // Manter compatibilidade com variável global
+        chatOpen = this.isOpen;
+    }
+
+    addWelcomeMessage() {
+        setTimeout(() => {
+            this.clearChatMessages();
+            const welcomeMsg = `
+                <div style="text-align: center; margin-bottom: 15px;">
+                    <strong style="font-size: 1.1em; color: #e20613;">🤖 Assistente Virtual eSocial SP</strong>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #28a745;">
+                    <strong style="color: #28a745;">✅ Especializado em resolver erros do eSocial!</strong>
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <strong style="color: #e20613;">📋 Posso ajudar com:</strong><br><br>
+                    
+                    <div style="margin-bottom: 8px;">
+                        🔍 <strong>Códigos de erro</strong><br>
+                        <small style="color: #6c757d;">Ex: "erro 401", "erro 701", "erro 999"</small>
+                    </div>
+                    
+                    <div style="margin-bottom: 8px;">
+                        📄 <strong>Eventos eSocial</strong><br>
+                        <small style="color: #6c757d;">S-1200, S-1202, S-2200, S-2300</small>
+                    </div>
+                    
+                    <div style="margin-bottom: 8px;">
+                        📋 <strong>Problemas de categoria</strong><br>
+                        <small style="color: #6c757d;">Ex: "categoria 701", "categoria inválida"</small>
+                    </div>
+                    
+                    <div style="margin-bottom: 8px;">
+                        🔧 <strong>Problemas técnicos</strong><br>
+                        <small style="color: #6c757d;">XML, CPF, CNPJ, certificado digital</small>
+                    </div>
+                    
+                    <div style="margin-bottom: 8px;">
+                        🏛️ <strong>Orientações por órgão</strong><br>
+                        <small style="color: #6c757d;">Administração Direta/Indireta</small>
+                    </div>
+                </div>
+                
+                <div style="background: #e3f2fd; padding: 10px; border-radius: 8px; text-align: center; border-left: 4px solid #2196f3;">
+                    <strong style="color: #1976d2;">💬 Digite sua dúvida ou código de erro!</strong>
+                </div>
+            `;
+            
+            this.addMessage(welcomeMsg, 'bot');
+        }, 1000);
+    }
+
+    sendMessage() {
+        const input = document.getElementById('chatInput');
+        if (!input || !input.value.trim()) return;
+
+        const userMessage = input.value.trim();
+        this.addMessage(userMessage, 'user');
+        
+        input.value = '';
+        
+        // Mostrar indicador de digitação
+        this.addMessage('<div class="loading"></div>', 'bot');
+        
+        setTimeout(() => {
+            this.removeBotTyping();
+            const response = this.processMessage(userMessage);
+            this.addMessage(response, 'bot');
+        }, 500 + Math.random() * 1000);
+    }
+
+    addMessage(content, type) {
+        const messagesContainer = document.getElementById('chatMessages');
+        if (!messagesContainer) return;
+
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${type}`;
+        messageDiv.innerHTML = content;
+        
+        messagesContainer.appendChild(messageDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    clearChatMessages() {
+        const messagesContainer = document.getElementById('chatMessages');
+        if (messagesContainer) {
+            messagesContainer.innerHTML = '';
+        }
+    }
+
+    removeBotTyping() {
+        const messages = document.querySelectorAll('.message.bot');
+        const lastMessage = messages[messages.length - 1];
+        if (lastMessage && lastMessage.querySelector('.loading')) {
+            lastMessage.remove();
+        }
+    }
+
+    /**
+     * 🧠 PROCESSAMENTO INTELIGENTE DE MENSAGENS
+     */
+    processMessage(message) {
+        const lowerMessage = message.toLowerCase();
+        
+        // 🔍 Verificar códigos de erro específicos PRIMEIRO
+        for (const [codigo, solucao] of Object.entries(esocialKnowledgeBase.codigosErro)) {
+            if (lowerMessage.includes(codigo)) {
+                return `
+                    <div style="text-align: center; margin-bottom: 12px;">
+                        <strong style="font-size: 1.1em; color: #dc3545;">🚨 CÓDIGO DE ERRO ${codigo}</strong>
+                    </div>
+                    
+                    <div style="background: #f8d7da; padding: 12px; border-radius: 8px; border-left: 4px solid #dc3545; margin-bottom: 12px;">
+                        <strong style="color: #721c24;">⚠️ Problema:</strong><br>
+                        ${solucao}
+                    </div>
+                    
+                    <div style="background: #d4edda; padding: 12px; border-radius: 8px; border-left: 4px solid #28a745; margin-bottom: 12px;">
+                        <strong style="color: #155724;">✅ Próximos passos:</strong><br>
+                        1️⃣ Corrija o problema identificado<br>
+                        2️⃣ Retransmita o evento<br>
+                        3️⃣ Aguarde confirmação de sucesso
+                    </div>
+                    
+                    <div style="background: #d1ecf1; padding: 10px; border-radius: 8px; text-align: center;">
+                        <strong style="color: #0c5460;">💡 Precisa de mais detalhes?</strong><br>
+                        <small>Digite o evento específico (ex: "S-2200")</small>
+                    </div>
+                `;
+            }
+        }
+
+        // 🔍 Verificar erros na base de conhecimento por palavras-chave
+        let bestMatch = null;
+        let bestScore = 0;
+
+        for (const erro of esocialKnowledgeBase.erros) {
+            let score = 0;
+            for (const palavra of erro.palavrasChave) {
+                if (lowerMessage.includes(palavra)) {
+                    score++;
+                }
+            }
+            
+            if (score > bestScore) {
+                bestScore = score;
+                bestMatch = erro;
+            }
+        }
+
+        if (bestMatch && bestScore >= 1) {
+            return `
+                <div style="text-align: center; margin-bottom: 12px;">
+                    <strong style="font-size: 1.1em; color: #e20613;">🔍 PROBLEMA IDENTIFICADO</strong>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 4px solid #6c757d; margin-bottom: 12px;">
+                    <strong style="color: #495057;">📋 Evento:</strong> <code>${bestMatch.codigo}</code><br>
+                    <strong style="color: #495057;">📂 Categoria:</strong> ${bestMatch.categoria}
+                </div>
+                
+                <div style="background: #fff3cd; padding: 12px; border-radius: 8px; border-left: 4px solid #ffc107; margin-bottom: 12px;">
+                    <strong style="color: #856404;">⚠️ Problema identificado:</strong><br>
+                    ${bestMatch.problema}
+                </div>
+                
+                <div style="background: #d4edda; padding: 12px; border-radius: 8px; border-left: 4px solid #28a745; margin-bottom: 12px;">
+                    <strong style="color: #155724;">✅ Solução recomendada:</strong><br>
+                    ${bestMatch.solucao}
+                </div>
+                
+                           
+                <div style="text-align: center; background: #f8f9fa; padding: 8px; border-radius: 6px;">
+                    <small style="color: #6c757d;">🔄 Mais dúvidas? Digite outro código ou problema!</small>
+                </div>
+            `;
+        }
+
+        // 🎯 Respostas específicas por evento
+        if (lowerMessage.includes('s-1200') || lowerMessage.includes('s1200')) {
+            return `
+                <div style="text-align: center; margin-bottom: 12px;">
+                    <strong style="font-size: 1.1em; color: #e20613;">📋 EVENTO S-1200</strong><br>
+                    <small style="color: #6c757d;">Remuneração do Trabalhador</small>
+                </div>
+                
+                <div style="background: #fff3cd; padding: 12px; border-radius: 8px; border-left: 4px solid #ffc107; margin-bottom: 12px;">
+                    <strong style="color: #856404;">🎯 Principais erros:</strong><br>
+                    • Categoria incompatível (usar para RGPS)<br>
+                    • Rubrica não cadastrada no período<br>
+                    • Devolução de contribuição indevida<br>
+                    • CPF inválido ou irregular
+                </div>
+                
+                <div style="background: #d4edda; padding: 12px; border-radius: 8px; border-left: 4px solid #28a745; margin-bottom: 12px;">
+                    <strong style="color: #155724;">✅ Categorias permitidas:</strong><br>
+                    <code>101, 302, 306, 701</code> (RGPS)
+                </div>
+                
+                <div style="background: #d1ecf1; padding: 10px; border-radius: 8px;">
+                    <strong style="color: #0c5460;">📞 Dúvidas sobre rubricas:</strong><br>
+                    <small>Consulte o DDPE para cadastro/ajuste</small>
+                </div>
+            `;
+        }
+
+        if (lowerMessage.includes('s-1202') || lowerMessage.includes('s1202')) {
+            return `
+                <div style="text-align: center; margin-bottom: 12px;">
+                    <strong style="font-size: 1.1em; color: #e20613;">📋 EVENTO S-1202</strong><br>
+                    <small style="color: #6c757d;">Remuneração RPPS</small>
+                </div>
+                
+                <div style="background: #fff3cd; padding: 12px; border-radius: 8px; border-left: 4px solid #ffc107; margin-bottom: 12px;">
+                    <strong style="color: #856404;">🎯 Principais erros:</strong><br>
+                    • Categoria incompatível (usar para RPPS)<br>
+                    • Lotação tributária incorreta (S-1020)<br>
+                    • Período de apuração inválido
+                </div>
+                
+                <div style="background: #d4edda; padding: 12px; border-radius: 8px; border-left: 4px solid #28a745; margin-bottom: 12px;">
+                    <strong style="color: #155724;">✅ Categorias permitidas:</strong><br>
+                    <code>301, 307</code> (RPPS)
+                </div>
+                
+                <div style="background: #e3f2fd; padding: 10px; border-radius: 8px;">
+                    <strong style="color: #1976d2;">🔄 Diferença do S-1200:</strong><br>
+                    <small>Específico para Regime Próprio de Previdência</small>
+                </div>
+            `;
+        }
+
+        if (lowerMessage.includes('s-2200') || lowerMessage.includes('s2200')) {
+            return `
+                <div style="text-align: center; margin-bottom: 12px;">
+                    <strong style="font-size: 1.1em; color: #e20613;">📋 EVENTO S-2200</strong><br>
+                    <small style="color: #6c757d;">Cadastramento Inicial do Trabalhador</small>
+                </div>
+                
+                <div style="background: #fff3cd; padding: 12px; border-radius: 8px; border-left: 4px solid #ffc107; margin-bottom: 12px;">
+                    <strong style="color: #856404;">🎯 Principais erros:</strong><br>
+                    • Data de nascimento divergente na RFB<br>
+                    • CNPJ inválido ou inexistente<br>
+                    • Campos obrigatórios não preenchidos<br>
+                    • Categoria inválida para o evento
+                </div>
+                
+                <div style="background: #d1ecf1; padding: 10px; border-radius: 8px;">
+                    <strong style="color: #0c5460;">✅ Dica importante:</strong><br>
+                    <small>Sempre validar CPF na RFB antes do envio</small>
+                </div>
+            `;
+        }
+
+        if (lowerMessage.includes('s-2300') || lowerMessage.includes('s2300')) {
+            return `📋 <strong>Evento S-2300 - Trabalhador Sem Vínculo</strong><br><br>
+                   🎯 <strong>Principais erros:</strong><br>
+                   • Categoria incorreta (não usar 701 para S-2200)<br>
+                   • CPF inválido ou irregular<br>
+                   • Data de nascimento incorreta<br><br>
+                   ✅ <strong>Categorias permitidas:</strong> 201, 202, 305, 308, etc.`;
+        }
+
+        // 🤝 Respostas para perguntas frequentes
+        if (lowerMessage.includes('como') || lowerMessage.includes('ajuda') || lowerMessage.includes('help')) {
+            return `🤖 <strong>Como posso ajudar:</strong><br><br>
+                   1️⃣ <strong>Digite um código de erro</strong> (ex: "erro 401")<br>
+                   2️⃣ <strong>Mencione o evento</strong> (ex: "S-2200", "S-1200")<br>
+                   3️⃣ <strong>Descreva o problema</strong> (ex: "CPF inválido")<br>
+                   4️⃣ <strong>Informe a categoria</strong> (ex: "categoria 701")<br><br>
+                   🏛️ <strong>Para órgãos públicos:</strong><br>
+                   • Administração Direta: Comunicar equipe eSocial<br>
+                   • Administração Indireta: Corrigir arquivo de extração<br><br>
+                   📞 <strong>Casos complexos:</strong> 0800 123 4567`;
+        }
+
+        if (lowerMessage.includes('obrigado') || lowerMessage.includes('valeu') || lowerMessage.includes('muito obrigado')) {
+            return `😊 <strong>De nada! Fico feliz em ajudar!</strong><br><br>
+                   🎯 Lembre-se: estou aqui 24/7 para resolver dúvidas do eSocial!<br>
+                   📞 Para casos complexos: <strong>0800 123 4567</strong><br>
+                   📧 E-mail: <strong>suporte_esocial@sp.gov.br</strong>`;
+        }
+
+        // 📞 Informações de contato
+        if (lowerMessage.includes('contato') || lowerMessage.includes('telefone') || lowerMessage.includes('suporte')) {
+            return `📞 <strong>Canais de Atendimento eSocial SP:</strong><br><br>
+                   🎧 <strong>Central:</strong> 0800 123 4567<br>
+                   ⏰ <strong>Horário:</strong> Segunda a sexta, 8h às 18h<br>
+                   📧 <strong>E-mail:</strong> suporte_esocial@sp.gov.br<br>
+                   💬 <strong>Chat:</strong> Aqui mesmo, 24/7!<br>
+                   📍 <strong>Presencial:</strong> Av. Paulista, 1804 - Bela Vista<br><br>
+                   ⚡ <strong>Resposta por e-mail:</strong> até 24h!`;
+        }
+
+        // 🔄 Certificado digital
+        if (lowerMessage.includes('certificado')) {
+            return `🔐 <strong>Certificado Digital - Orientações:</strong><br><br>
+                   ⚠️ <strong>Erro 999 - Certificado Expirado:</strong><br>
+                   1. Renove o certificado A1 ou A3<br>
+                   2. Instale no servidor<br>
+                   3. Configure no sistema eSocial<br>
+                   4. Teste a conexão<br><br>
+                   📋 <strong>Para renovação:</strong><br>
+                   • Procure uma Autoridade Certificadora<br>
+                   • Leve RG, CPF e comprovante de residência<br>
+                   • Para PJ: Contrato social + procuração`;
+        }
+
+        // 🎲 Resposta padrão com dica aleatória
+        const dicaAleatoria = esocialKnowledgeBase.dicasGerais[
+            Math.floor(Math.random() * esocialKnowledgeBase.dicasGerais.length)
+        ];
+
+        return `🤔 <strong>Não encontrei uma solução específica para isso.</strong><br><br>
+               💡 <strong>Dica do momento:</strong> ${dicaAleatoria}<br><br>
+               🔍 <strong>Para melhor ajuda, seja mais específico:</strong><br>
+               • Código do evento (S-2200, S-1200, etc.)<br>
+               • Número do erro (401, 701, 999, etc.)<br>
+               • Tipo de problema (CPF, data, categoria, etc.)<br><br>
+               📞 <strong>Suporte direto:</strong> 0800 123 4567<br>
+               📧 <strong>E-mail:</strong> suporte_esocial@sp.gov.br`;
+    }
+}
+
+// =====================================================
+// ASSISTENTE VIRTUAL ESOCIAL - FIM
+// =====================================================
+
+// Manter as funções originais do chat (para compatibilidade)
+function toggleChat() {
+    if (window.esocialAssistant) {
+        window.esocialAssistant.toggleChat();
+    } else {
+        // Fallback para o sistema original
+        const chatWindow = document.getElementById('chatWindow');
+        if (chatWindow) {
+            chatOpen = !chatOpen;
+            chatWindow.style.display = chatOpen ? 'flex' : 'none';
+        }
+    }
+}
+
+function sendChatMessage() {
+    if (window.esocialAssistant) {
+        window.esocialAssistant.sendMessage();
+    }
+}
+
+function handleChatKeyPress(event) {
+    if (event.key === 'Enter') {
+        if (window.esocialAssistant) {
+            window.esocialAssistant.sendMessage();
+        }
+    }
+}
+
+// Form Functions
+function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    // Get form data
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    
+    // Show loading state
+    const submitBtn = event.target.querySelector('button[type="submit"]');
+    if (submitBtn) {
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<div class="loading"></div> Enviando...';
+        submitBtn.disabled = true;
+        
+        // Simulate form submission
+        setTimeout(() => {
+            showNotification('Solicitação enviada com sucesso! Entraremos em contato em breve.', 'success');
+            event.target.reset();
+            
+            // Restore button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }, 2000);
+    }
+}
+
+// Dashboard Updates
+function updateDashboardStats() {
+    const stats = [
+        { id: 'events-today', min: 3000, max: 4000 },
+        { id: 'success-rate', min: 97, max: 99, suffix: '%' },
+        { id: 'connected-organs', min: 185, max: 195 },
+        { id: 'active-alerts', min: 5, max: 25 }
+    ];
+    
+    stats.forEach(stat => {
+        const element = document.getElementById(stat.id);
+        if (element) {
+            const currentValue = parseInt(element.textContent.replace(/[^\d]/g, ''));
+            const change = Math.floor(Math.random() * 10) - 5;
+            let newValue = Math.max(stat.min, Math.min(stat.max, currentValue + change));
+            
+            if (stat.suffix) {
+                element.textContent = newValue + stat.suffix;
+            } else {
+                element.textContent = newValue.toLocaleString();
+            }
+        }
+    });
+}
+
+// Notification System
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    // Show notification
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+    
+    // Hide notification
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            if (document.body.contains(notification)) {
+                document.body.removeChild(notification);
+            }
+        }, 400);
+    }, 4000);
+}
+
+// Status Indicator Animation
+function updateStatusIndicators() {
+    const indicators = document.querySelectorAll('.status-indicator');
+    indicators.forEach(indicator => {
+        if (Math.random() > 0.97) { // 3% chance to change status
+            const statuses = ['status-verde', 'status-amarelo'];
+            const currentStatus = statuses.find(s => indicator.classList.contains(s));
+            
+            if (currentStatus) {
+                indicator.classList.remove(currentStatus);
+                const newStatus = statuses[Math.floor(Math.random() * statuses.length)];
+                indicator.classList.add(newStatus);
+            }
+        }
+    });
+}
+
+// Initialize page
+function initializePage() {
+    // Check stored section or default to dashboard
+    let storedSection = 'dashboard';
+    try {
+        storedSection = sessionStorage.getItem('currentSection') || 'dashboard';
+    } catch (e) {
+        console.log('SessionStorage not available');
+    }
+
+    if (document.getElementById(storedSection)) {
+        // Find the corresponding nav item and simulate click
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            if (item.textContent.trim().toLowerCase().includes(storedSection) || 
+                (storedSection === 'dashboard' && item.textContent.includes('Dashboard'))) {
+                item.classList.add('active');
+                const section = document.getElementById(storedSection);
+                if (section) {
+                    section.classList.add('active');
+                }
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    }
+    
+    // Show welcome notification
+    setTimeout(() => {
+        showNotification('Bem-vindo ao Portal eSocial SP! 🎉', 'success');
+    }, 2000);
+    
+    // Start periodic updates
+    setInterval(updateDashboardStats, 30000);
+    setInterval(updateStatusIndicators, 15000);
+    
+    // Simulate system updates
+    setInterval(() => {
+        const updates = [
+            'Nova transmissão S-1200 processada com sucesso ✅',
+            'Relatório mensal gerado e disponível 📊',
+            'Manutenção preventiva concluída 🔧',
+            'Novo órgão conectado ao sistema 🏛️'
+        ];
+        
+        const randomUpdate = updates[Math.floor(Math.random() * updates.length)];
+        showNotification(randomUpdate, 'info');
+    }, 120000); // Every 2 minutes
+}
+
+// Animation Observer
+function initializeAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observe cards and animate them
+    document.querySelectorAll('.card, .stat-card, .news-card, .timeline-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+}
+
+// Event Listeners
+document.addEventListener('DOMContentLoaded', function() {
+    initializePage();
+    initializeAnimations();
+    
+    // Inicializar o assistente inteligente
+    setTimeout(() => {
+        if (!window.esocialAssistant) {
+            try {
+                window.esocialAssistant = new ESocialAssistant();
+                console.log('🤖 Assistente Virtual eSocial inicializado com sucesso!');
+            } catch (error) {
+                console.error('❌ Erro ao inicializar assistente:', error);
+            }
+        }
+    }, 1500);
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && chatOpen) {
+        toggleChat();
+    }
+});
+
+// Smooth scrolling for internal links
+document.addEventListener('click', function(event) {
+    if (event.target.matches('a[href^="#"]')) {
+        event.preventDefault();
+        const target = document.querySelector(event.target.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+});
+
+// Enhanced form validation
+document.addEventListener('submit', function(event) {
+    if (event.target.matches('#contactForm')) {
+        handleFormSubmit(event);
+    }
+});
+
+// Add loading states to buttons
+document.addEventListener('click', function(event) {
+    if (event.target.matches('.btn') && !event.target.disabled) {
+        const button = event.target;
+        
+        // Add subtle loading effect
+        button.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+            button.style.transform = '';
+        }, 150);
+    }
+});
+
+// Console welcome message
+console.log('%c🏛️ Portal eSocial SP', 'color: #e20613; font-size: 20px; font-weight: bold;');
+console.log('%cSistema desenvolvido para o Governo do Estado de São Paulo', 'color: #6c757d; font-size: 12px;');
+console.log('%c📞 Suporte: 0800 123 4567', 'color: #28a745; font-size: 12px;');
+console.log('%c🤖 Assistente Virtual eSocial carregado!', 'color: #e20613; font-size: 14px; font-weight: bold;');
+    </script>
+</body>
+</html>
